@@ -53,7 +53,9 @@ function main() {
                 console.log(tokens);
 
                 // fill in data in index.html according to the tokens
+                // also generate data for the widget
                 let indexFilled = indexTemplate;
+                let widgetHtml = '';
                 Object.entries(tokens).forEach((entry) => {
                     const key = entry[0];
                     const token = entry[1];
@@ -69,11 +71,16 @@ function main() {
                                 replacement = relPath;
                         }
                         indexFilled = indexFilled.replace(token.match, replacement);
+                        widgetHtml += `<p>${token.selected[i]}</p>\n`;
                     }
                 });
 
-                // res.writeHead(200, {"content-type": "application/json"});
-                // res.end(JSON.stringify({ formData: req.body, updatedTokens: tokens }));
+                // add a widget showing what files are currently open
+                if (widgetHtml !== '') {
+                    let widgetTemplate = fse.readFileSync(path.join(__dirname, 'widget.html'), 'utf8');
+                    widgetTemplate = widgetTemplate.replace('</div>', widgetHtml + '</div>');
+                    indexFilled = indexFilled.replace('</body>', widgetTemplate + '</body>');
+                }
 
                 res.writeHead(200, { "content-type": "text/html" });
                 res.end(indexFilled);
