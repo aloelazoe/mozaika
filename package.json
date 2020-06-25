@@ -1,0 +1,21 @@
+{
+  "name": "mozaika",
+  "version": "0.1.0",
+  "description": "a little program that serves customizable variations of an html page. configure a folder structure with different versions of resource files and use a simple templating syntax in your main html file to point to these folders and specify how they should be used. you will be presented with a simple gui that lets you arrange different versions of resource files in various combinations and then run the resulting page",
+  "bin": {
+    "mozaika": "./mozaika.js"
+  },
+  "main": "./mozaika.js",
+  "scripts": {
+    "start": "node mozaika.js"
+  },
+  "author": "aloelazoe",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "connect": "^3.7.0",
+    "fs-extra": "^9.0.1",
+    "open": "^7.0.4",
+    "send": "^0.17.1"
+  }
+}
