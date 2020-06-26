@@ -17,7 +17,7 @@ const tokenTypes = {
 function main() {
     console.log('cwd:', process.cwd());
     console.log('__dirname:', __dirname);
-    console.log('argv:', process.argv);
+    // console.log('argv:', process.argv);
 
     let tokens = null;
     let indexTemplate = null;
@@ -27,10 +27,10 @@ function main() {
     app.use(bodyParser.urlencoded({ extended: true }));
 
     app.use((req, res) => {
-        console.log({
-            url: req.url,
-            method: req.method,
-        });
+        // console.log({
+        //     url: req.url,
+        //     method: req.method,
+        // });
 
         if (req.method === 'POST') {
             // respond with index.html after customizing it according to form data in url,
@@ -38,8 +38,8 @@ function main() {
             if (req.body && indexTemplate && tokens) {
                 // todo: also check if existing token data is invalid
                 // todo: make sure we use the same exact data from index.html that we used to create options for the menu from
-                console.log('req.body:');
-                console.log(req.body);
+                // console.log('req.body:');
+                // console.log(req.body);
 
                 // update tokens with the form data from the request
                 Object.entries(req.body).forEach((entry) => {
@@ -49,8 +49,8 @@ function main() {
                     tokens[key].selected[idx] = entry[1];
                 });
 
-                console.log('updated tokens:');
-                console.log(tokens);
+                // console.log('updated tokens:');
+                // console.log(tokens);
 
                 // fill in data in index.html according to the tokens
                 // also generate data for the widget
@@ -158,8 +158,8 @@ function main() {
             let menu = fse.readFileSync(path.join(__dirname, 'menu.html'), 'utf8');
             menu = menu.replace('</body>', `<form method="POST">\n ${formHtml} <input type="submit" value="submit"><br>\n</form>\n</body>`);
 
-            console.log('tokens:');
-            console.log(tokens);
+            // console.log('tokens:');
+            // console.log(tokens);
 
             // res.writeHead(200, {"content-type": "application/json"});
             // res.write(JSON.stringify(tokens));
