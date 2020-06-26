@@ -126,7 +126,9 @@ function main() {
                     while (true) {
                         curEnt = dir.readSync();
                         if (!curEnt) break;
-                        tokens[k].options.push(curEnt.name);
+                        if (curEnt.isFile() && !curEnt.name.startsWith('.')) {
+                            tokens[k].options.push(curEnt.name);
+                        }
                     }
                     dir.closeSync();
                 } catch (err) {
