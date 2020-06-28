@@ -8,7 +8,7 @@ const send = require('send');
 // might use it to open url in browser automatically
 const open = require('open');
 
-const defaultPort = 3000;
+const defaultPort = 6090;
 const tokenTypes = {
     path: /{@(.*)@}/gm,
     content: /{#(.*)#}/gm,
@@ -188,7 +188,7 @@ function main() {
             server.listen();
         }
     });
-    server.listen(defaultPort);
+    server.listen(parseInt(process.argv[2]) || defaultPort);
 }
 
 main();
