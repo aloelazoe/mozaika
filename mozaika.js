@@ -186,9 +186,12 @@ function main() {
             console.log(`default port ${defaultPort} is already in use, retrying with a random port`);
             server.close();
             server.listen();
+        } else {
+            console.error(e);
+            server.close();
         }
     });
-    server.listen(parseInt(process.argv[2]) || defaultPort);
+    server.listen(parseInt(process.argv[2]) || defaultPort, '127.0.0.1');
 }
 
 main();
