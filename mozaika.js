@@ -148,8 +148,8 @@ function main() {
                     let formChunk = '';
                     formChunk += `<p>${key}:</p>\n`;
                     token.options.forEach((option, idx) => {
-                        formChunk += `<input type="radio" id="${key + i}" name="${key + i}" value="${option}"${idx === 0 ? 'checked="true"' : ''}>\n`;
-                        formChunk += `<label for="${key + i}">${option}</label><br>\n`;
+                        formChunk += `<input type="radio" id="${key + idx}" name="${key + i}" value="${option}"${idx === 0 ? 'checked="true"' : ''}>\n`;
+                        formChunk += `<label for="${key + idx}">${option}</label><br>\n`;
                     });
                     formHtml += formChunk + '\n<br>\n';
                 }
